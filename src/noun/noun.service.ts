@@ -8,8 +8,20 @@ import { AddNounDto } from './dto/AddNoun.dto';
 export class NounService {
   constructor(@InjectModel(Noun.name) private nounModel: Model<Noun>) {}
 
-  addNoun(addNounDto: AddNounDto) {
+  async addNoun(addNounDto: AddNounDto) {
     const newWord = new this.nounModel(addNounDto);
     return newWord.save();
+  }
+
+  async getNounsByType(query: string): Promise<Noun[]> {
+    return this.nounModel.find({ type: query }).exec();
+  }
+
+  async getNoun(query: string, type?: string): Promise<Noun[]> {
+    const filter: any = { word: { $regex: new RegExp(query, 'i') } };
+    if (type) {
+      filter.type = type;
+    }
+    return this.nounModel.find(filter).exec();
   }
 }

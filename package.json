@@ -1,7 +1,7 @@
 {
   "name": "ibomlang-api",
   "version": "0.0.1",
-  "description": "API that powers a local languages project for sub-saharan africa",
+  "description": "API that powers a local languages project in sub-saharan africa",
   "author": "Otobong Peter",
   "private": true,
   "license": "UNLICENSED",
