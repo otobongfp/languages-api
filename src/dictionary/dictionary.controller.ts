@@ -1,7 +1,21 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { DictionaryService } from './dictionary.service';
 import { AddWordDto } from './dto/AddWord.dto';
-import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { Dictionary } from 'src/Schema/Dictionary.schema';
 
 @ApiTags('Dictionary')
 @Controller('dictionary')
@@ -17,9 +31,19 @@ export class DictionaryController {
     return this.dictionaryService.addWord(addWordDto);
   }
 
-  @Get()
-  async getDictionary() {
-    return this.dictionaryService.getWords();
+  @Get('/words')
+  @ApiOperation({ summary: 'Get words with pagination' })
+  @ApiQuery({ name: 'page', description: 'Page number', required: false })
+  @ApiQuery({
+    name: 'limit',
+    description: 'Number of items per page',
+    required: false,
+  })
+  async getWords(
+    @Query('page', ParseIntPipe) page: number = 1,
+    @Query('limit', ParseIntPipe) limit: number = 10,
+  ): Promise<Dictionary[]> {
+    return this.dictionaryService.getWords(page, limit);
   }
 
   @Get('word')
@@ -27,7 +51,11 @@ export class DictionaryController {
     return this.dictionaryService.searchWord(query);
   }
 
-  @Get('translation')
+  @Get('en')
+  @ApiOperation({
+    summary: 'search for the word in English',
+    description: 'e.g /en/?query=love',
+  })
   async searchTranslation(@Query('query') query: string) {
     return this.dictionaryService.searchTranslation(query);
   }

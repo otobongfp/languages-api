@@ -16,8 +16,9 @@ export class DictionaryService {
     return newWord.save();
   }
 
-  async getWords(): Promise<Dictionary[]> {
-    return this.dictionaryModel.find().exec();
+  async getWords(page: number = 1, limit: number = 10): Promise<Dictionary[]> {
+    const skip = (page - 1) * limit;
+    return this.dictionaryModel.find().skip(skip).limit(limit).exec();
   }
 
   // async searchWord(query: string): Promise<Dictionary[]> {

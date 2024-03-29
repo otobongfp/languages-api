@@ -24,4 +24,8 @@ export class NounService {
     }
     return this.nounModel.find(filter).exec();
   }
+
+  async searchEn(query: string): Promise<Noun[]> {
+    return this.nounModel.find({ translation: query }).exec();
+  }
 }
