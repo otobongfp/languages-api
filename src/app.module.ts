@@ -4,15 +4,12 @@ import { AppService } from './app.service';
 import { DictionaryModule } from './dictionary/dictionary.module';
 import { NounModule } from './noun/noun.module';
 import { MongooseModule } from '@nestjs/mongoose';
+require('dotenv').config();
+
+const db = process.env.MONGODB_URI;
 
 @Module({
-  imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://ibomlang1:Ya6KWZO4sazEuG2Z@ibomlang1.watk83n.mongodb.net/ibomlang_api?retryWrites=true&w=majority',
-    ),
-    DictionaryModule,
-    NounModule,
-  ],
+  imports: [MongooseModule.forRoot(db), DictionaryModule, NounModule],
   controllers: [AppController],
   providers: [AppService],
 })
