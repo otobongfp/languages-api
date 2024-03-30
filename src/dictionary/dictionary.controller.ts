@@ -52,12 +52,12 @@ export class DictionaryController {
     return this.dictionaryService.searchWord(query);
   }
 
-  @Get('en')
-  @ApiOperation({
-    summary: 'search for the word in English',
-    description: 'e.g /en/?query=love',
-  })
-  async searchTranslation(@Query('query') query: string) {
-    return this.dictionaryService.searchTranslation(query);
-  }
+  // @Get('en')
+  // @ApiOperation({
+  //   summary: 'search for the word in English',
+  //   description: 'e.g /en/?query=love',
+  // })
+  // async searchTranslation(@Query('query') query: string) {
+  //   return this.dictionaryService.searchTranslation(query);
+  // }
 }

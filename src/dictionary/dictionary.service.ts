@@ -21,22 +21,22 @@ export class DictionaryService {
     return this.dictionaryModel.find().skip(skip).limit(limit).exec();
   }
 
+  async searchWord(query: string): Promise<Dictionary[]> {
+    return this.dictionaryModel
+      .find({
+        $or: [
+          { word: { $regex: query, $options: 'i' } },
+          { translation: { $regex: query, $options: 'i' } },
+        ],
+      })
+      .exec();
+  }
+
   // async searchWord(query: string): Promise<Dictionary[]> {
-  //   return this.dictionaryModel
-  //     .find({
-  //       $or: [
-  //         { word: { $regex: query, $options: 'i' } },
-  //         { translation: { $regex: query, $options: 'i' } },
-  //       ],
-  //     })
-  //     .exec();
+  //   return this.dictionaryModel.find({ word: query }).exec();
   // }
 
-  async searchWord(query: string): Promise<Dictionary[]> {
-    return this.dictionaryModel.find({ word: query }).exec();
-  }
-
-  async searchTranslation(query: string): Promise<Dictionary[]> {
-    return this.dictionaryModel.find({ translation: query }).exec();
-  }
+  // async searchTranslation(query: string): Promise<Dictionary[]> {
+  //   return this.dictionaryModel.find({ translation: query }).exec();
+  // }
 }
