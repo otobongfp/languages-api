@@ -32,6 +32,7 @@ export class DictionaryController {
   }
 
   @Get('/words')
+  @ApiResponse({ status: 200 })
   @ApiOperation({ summary: 'Get words with pagination' })
   @ApiQuery({ name: 'page', description: 'Page number', required: false })
   @ApiQuery({
