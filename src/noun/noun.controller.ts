@@ -24,7 +24,8 @@ export class NounController {
 
   @Get()
   @ApiOperation({
-    summary: 'Search for nouns using the word(local) & type',
+    summary:
+      'Search for nouns using the word in either the local dialect or english',
     description:
       'By passing two params e.g /noun/?query=ita&type=number. This helps you get the exact word in that class',
   })
@@ -32,12 +33,12 @@ export class NounController {
     return this.nounService.getNoun(query, type);
   }
 
-  @Get('en')
-  @ApiOperation({
-    summary: 'Search using the english translation',
-    description: 'e.g /en/query=two',
-  })
-  async getEn(@Query('query') query: string) {
-    return this.nounService.searchEn(query);
-  }
+  // @Get('en')
+  // @ApiOperation({
+  //   summary: 'Search using the english translation',
+  //   description: 'e.g /en/query=two',
+  // })
+  // async getEn(@Query('query') query: string) {
+  //   return this.nounService.searchEn(query);
+  // }
 }

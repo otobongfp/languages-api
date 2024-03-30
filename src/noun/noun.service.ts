@@ -18,7 +18,13 @@ export class NounService {
   }
 
   async getNoun(query: string, type?: string): Promise<Noun[]> {
-    const filter: any = { word: { $regex: new RegExp(query, 'i') } };
+    const filter: any = {
+      $or: [
+        { word: { $regex: new RegExp(query, 'i') } },
+        { translation: { $regex: new RegExp(query, 'i') } },
+      ],
+    };
+
     if (type) {
       filter.type = type;
     }
