@@ -12,4 +12,16 @@ export class AddWordDto {
   @IsNotEmpty()
   @IsString()
   meaning: string;
+
+  @IsNotEmpty()
+  @IsString()
+  usage: string;
+
+  @IsNotEmpty()
+  @IsString()
+  usageTranslation: string;
+
+  @IsNotEmpty()
+  @IsString()
+  langCode: string;
 }
