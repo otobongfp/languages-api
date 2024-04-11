@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class AddNounDto {
   @IsNotEmpty()
@@ -8,6 +8,9 @@ export class AddNounDto {
   @IsNotEmpty()
   @IsString()
   translation: string;
+
+  @IsOptional()
+  numeral: number;
 
   @IsNotEmpty()
   @IsString()
