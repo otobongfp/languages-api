@@ -3,7 +3,7 @@
 //fire request to the dormant api inorder to keep
 //it alive
 
-var cron = require('node-cron');
+import cron from 'node-cron';
 import axios from 'axios';
 
 cron.schedule('*/2 * * * *', async () => {

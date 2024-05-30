@@ -9,6 +9,8 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  await import('./keepAlive');
+
   const config = new DocumentBuilder()
     .setTitle('Languages API')
     .setDescription(
