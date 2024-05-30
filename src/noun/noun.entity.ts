@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class AddNounDto {
+export class AddNoun {
   @IsNotEmpty()
   @IsString()
   word: string;
