@@ -1,6 +1,6 @@
 import { Body, Controller, Post, Get, Query } from '@nestjs/common';
 import { NounService } from './noun.service';
-import { AddNoun } from './noun.entity';
+import { Noun } from '../Schema/Noun.schema';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Noun')
@@ -9,8 +9,8 @@ export class NounController {
   constructor(private nounService: NounService) {}
 
   @Post()
-  async addNoun(@Body() addNoun: AddNoun) {
-    return this.nounService.addNoun(addNoun);
+  async addNoun(@Body() noun: Noun) {
+    return this.nounService.addNoun(noun);
   }
 
   @Get('type')

@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Noun } from 'src/Schema/Noun.schema';
-import { AddNounDto } from './dto/AddNoun.dto';
+import { NounTypes } from 'src/common/types/nounTypes';
 
 @Injectable()
 export class NounService {
   constructor(@InjectModel(Noun.name) private nounModel: Model<Noun>) {}
 
-  async addNoun(addNounDto: AddNounDto) {
+  async addNoun(addNounDto: NounTypes) {
     const newWord = new this.nounModel(addNounDto);
     return newWord.save();
   }

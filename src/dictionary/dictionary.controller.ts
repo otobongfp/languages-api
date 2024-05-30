@@ -7,7 +7,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { DictionaryService } from './dictionary.service';
-import { AddWord } from './dictionary.entity';
+import { WordType } from 'src/common/types/dictionaryTypes';
 import {
   ApiBody,
   ApiOperation,
@@ -27,7 +27,7 @@ export class DictionaryController {
     status: 201,
     description: 'Add a new word into the dictionary',
   })
-  async addWord(@Body() addWord: AddWord) {
+  async addWord(@Body() addWord: WordType) {
     return this.dictionaryService.addWord(addWord);
   }
 
