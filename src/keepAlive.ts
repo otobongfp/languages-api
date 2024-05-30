@@ -8,7 +8,10 @@ import axios from 'axios';
 
 cron.schedule('*/2 * * * *', async () => {
   try {
-    if (await axios.get('https://languages-api.onrender.com/words')) {
+    const res = await axios.get(
+      'https://languages-api.onrender.com/dictionary/words?page=1&limit=5',
+    );
+    if (res.status == 200) {
       console.log('Alive');
     } else {
       console.log('Endpoint not available yet!');
