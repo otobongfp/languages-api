@@ -10,8 +10,9 @@ cron.schedule('*/2 * * * *', async () => {
   try {
     if (await axios.get('https://languages-api.onrender.com/words')) {
       console.log('Alive');
+    } else {
+      console.log('Endpoint not available yet!');
     }
-    console.log('Endpoint not available yet!');
   } catch (error) {
     console.log(error, 'wahala dey');
   }
