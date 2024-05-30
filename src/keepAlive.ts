@@ -8,8 +8,10 @@ import axios from 'axios';
 
 cron.schedule('*/2 * * * *', async () => {
   try {
-    const res = axios.get('https://languages-api.onrender.com/words');
-    console.log('Alive!');
+    if (await axios.get('https://languages-api.onrender.com/words')) {
+      console.log('Alive');
+    }
+    console.log('Endpoint not available yet!');
   } catch (error) {
     console.log(error, 'wahala dey');
   }
